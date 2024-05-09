@@ -1,5 +1,6 @@
-package com.example.ses.awsSESservice;
+package com.example.ses.awsSESservice.controller;
 
+import com.example.ses.awsSESservice.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class FileController {
+public class EmailController {
 
     @Autowired
-    private FileService fileService;
+    private EmailService emailService;
 
     @PostMapping("/sendEmail")
     public String sendMessage(@RequestParam String fromEmail,
@@ -24,7 +25,7 @@ public class FileController {
         simpleMailMessage.setSubject(subject);
         simpleMailMessage.setText(body);
 
-        fileService.sendMessage(simpleMailMessage);
+        emailService.sendMessage(simpleMailMessage);
         return "Email sent!";
     }
 }

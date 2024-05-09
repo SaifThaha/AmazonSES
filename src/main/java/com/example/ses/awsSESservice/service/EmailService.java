@@ -1,4 +1,4 @@
-package com.example.ses.awsSESservice;
+package com.example.ses.awsSESservice.service;
 
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
 import com.amazonaws.services.simpleemail.model.*;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 
 @Service
-public class FileService {
+public class EmailService {
     @Autowired
     private AmazonSimpleEmailService amazonSimpleEmailService;
     public void sendMessage(SimpleMailMessage simpleMailMessage) {

@@ -1,4 +1,4 @@
-package com.example.ses.awsSESservice;
+package com.example.ses.awsSESservice.config;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
