@@ -12,6 +12,10 @@ import java.util.Arrays;
 public class EmailService {
     @Autowired
     private AmazonSimpleEmailService amazonSimpleEmailService;
+    public String from = "saifmohamed1996@gmail.com";
+    public String[] to = {"saif@vepay.io"};
+    private String templateName = "MyTemplate";
+    private String templateData = "{ \"name\":\"Jack\", \"favoriteanimal\": \"Tiger\"}";
     public void sendMessage(SimpleMailMessage simpleMailMessage) {
         Destination destination = new Destination();
         destination.setToAddresses(Arrays.asList(simpleMailMessage.getTo()));
@@ -29,11 +33,12 @@ public class EmailService {
         message.setBody(body);
         message.setSubject(subject);
 
-        SendEmailRequest sendEmailRequest = new SendEmailRequest();
-        sendEmailRequest.setDestination(destination);
-        sendEmailRequest.setMessage(message);
-        sendEmailRequest.setSource(simpleMailMessage.getFrom());
+        SendTemplatedEmailRequest sendTemplatedEmailRequest = new SendTemplatedEmailRequest();
+        sendTemplatedEmailRequest.setDestination(destination);
+        sendTemplatedEmailRequest.setTemplate(templateName);
+        sendTemplatedEmailRequest.setTemplateData(templateData);
+        sendTemplatedEmailRequest.setSource(simpleMailMessage.getFrom());
 
-        amazonSimpleEmailService.sendEmail(sendEmailRequest);
+        amazonSimpleEmailService.sendTemplatedEmail(sendTemplatedEmailRequest);
     }
 }
